@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+const int MAX_ERROS = 6; // número máximo de erros permitidos
+string palavra_secreta = "palavra"; // palavra a ser adivinhada
+string palavra_exibida = "______"; // palavra exibida para o jogador
+int erros = 0; // número de erros atuais
+
+void desenha_forca() {
+  if (erros == 0) {
+    cout << " _________" << endl;
+    cout << "|         |" << endl;
+    cout << "|" << endl;
+    cout << "|" << endl;
+    cout << "|" << endl;
+    cout << "|" << endl;
+    cout << "|" << endl;
+  } else if (erros == 1) {
+    cout << " _________" << endl;
+    cout << "|         |" << endl;
+    cout << "|         O" << endl;
+    cout << "|" << endl;
+    cout << "|" << endl;
+    cout << "|" << endl;
+    cout << "|" << endl;
+  } else if (erros == 2) {
+    cout << " _________" << endl;
+    cout << "|         |" << endl;
+    cout << "|         O" << endl;
+    cout << "|         |" << endl;
+    cout << "|" << endl;
+    cout << "|" << endl;
+    cout << "|" << endl;
+  } // outros desenhos da forca de acordo com o número de erros
+}
+
+void adivinha_letra() {
+  char letra;
+  cout &#8203;`oaicite:{"index":0,"invalid_reason":"Malformed citation << \"Adivinhe uma letra: \";\n  cin >>"}`&#8203; letra;
+
+  bool acertou = false;
+  for (int i = 0; i < palavra_secreta.length(); i++) {
+    if (palavra_secreta[i] == letra) {
+      palavra_exibida[i] = letra;
+      acertou = true;
+    }
+  }
+
+  if (!acertou) {
+    erros++;
+  }
+}
+
+int main() {
+  while (erros < MAX_ERROS && palavra_exibida != palavra_secreta) {
+    desenha_forca();
+    cout << "Palavra: " << palavra_exibida << endl;
+    adivinha_letra();
